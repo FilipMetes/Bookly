@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Configuration;
+use App\Models\User;
 use Exception;
 use Framework\Core\BaseController;
 use Framework\Http\Request;
@@ -16,7 +17,7 @@ class RegisterController extends BaseController
         return $this->html();
     }
 
-    public function create(Request $request): Response
+    public function register(Request $request): Response
     {
         $errors = [];
         if ($request->hasValue('submit')) {
@@ -32,7 +33,7 @@ class RegisterController extends BaseController
             if ($surname === '') $errors[] = 'Priezvisko je povinné.';
             if (!filter_var($e_mail, FILTER_VALIDATE_EMAIL)) $errors[] = 'Neplatný email.';
             if (strlen($password) < 6) $errors[] = 'Heslo musí mať aspoň 6 znakov.';
-            if (\App\Models\User::getCount('e_mail = ?', [$e_mail]) > 0) $errors[] = 'Používateľ s týmto emailom už existuje.';
+            if (User::getCount('e_mail = ?', [$e_mail]) > 0) $errors[] = 'Používateľ s týmto emailom už existuje.';
 
             if (empty($errors)) {
                 try {

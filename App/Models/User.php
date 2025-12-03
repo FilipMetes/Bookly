@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Framework\Core\Model;
 use Framework\Core\IIdentity;
+use Framework\Core\Model;
 use Framework\DB\Connection;
 use Exception;
 

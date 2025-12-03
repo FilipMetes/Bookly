@@ -40,7 +40,7 @@ class RegisterController extends BaseController
 
             if (empty($errors)) {
                 try {
-                    $user = new \App\Models\User();
+                    $user = new User();
                     $user->setName($name);
                     $user->setSurname($surname);
                     $user->setStreet($street);
@@ -60,5 +60,18 @@ class RegisterController extends BaseController
 
         // If there are errors (or showing form after POST), render the register form (index view)
         return $this->html(compact('errors'), 'index');
+    }
+
+    /**
+     * AJAX: validate name field
+     */
+    public function validateName(Request $request): Response
+    {
+        $name = trim($request->value('name')) ?? '';
+        if ($name === '') {
+            return $this->json(['valid' => false, 'message' => 'Meno je pinné.']);
+        }
+        // additional server-side checks could go here
+        return $this->json(['valid' => true, 'message' => '']);
     }
 }

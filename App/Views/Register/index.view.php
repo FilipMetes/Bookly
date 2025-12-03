@@ -4,7 +4,7 @@
 /** @var \Framework\Support\LinkGenerator $link */
 /** @var \Framework\Support\View $view */
 
-$view->setLayout('auth');
+$view->setLayout('root');
 ?>
 
 <div class="container">
@@ -24,15 +24,16 @@ $view->setLayout('auth');
                         </div>
                     <?php } ?>
 
-                    <form method="post" action="<?= $link->url('register.register') ?>">
+                    <form method="post" id="registerForm" action="<?= $link->url('register.register') ?>">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="name" class="form-label">Meno</label>
-                                <input type="text" id="name" name="name" class="form-control" required>
+                                <input type="text" id="name" name="name" class="form-control">
+                                <div id="nameError" class="form-text text-danger" style="display:none;"></div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="surname" class="form-label">Priezvisko</label>
-                                <input type="text" id="surname" name="surname" class="form-control" required>
+                                <input type="text" id="surname" name="surname" class="form-control">
                             </div>
                         </div>
 
@@ -54,12 +55,12 @@ $view->setLayout('auth');
 
                         <div class="mb-3">
                             <label for="e_mail" class="form-label">E-mail</label>
-                            <input type="email" id="e_mail" name="e_mail" class="form-control" required>
+                            <input type="email" id="e_mail" name="e_mail" class="form-control">
                         </div>
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Heslo</label>
-                            <input type="password" id="password" name="password" class="form-control" required>
+                            <input type="password" id="password" name="password" class="form-control">
                         </div>
 
                         <div class="text-center">

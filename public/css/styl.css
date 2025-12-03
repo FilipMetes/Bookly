@@ -1,7 +1,37 @@
 .navbar {
-    border-bottom: 1px solid grey;
+    background-color: #000 !important; /* čierne pozadie */
+    border-bottom: 4px solid #dc3545; /* červený pásik pod navbarom */
+}
+
+.navbar .nav-link {
+    color: #6c757d !important; /* sivý text pre odkazy */
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #adb5bd !important;
+    text-decoration: none;
+}
+
+.navbar .navbar-text {
+    color: #6c757d !important; /* sivý text pre informácie o používateľovi */
+    margin-right: 1rem;
+}
+
+.navbar-brand {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #6c757d; /* sivý text brandu */
+}
+
+.navbar-brand:hover {
+    color: #adb5bd;
+    text-decoration: none;
 }
 
 .navbar-brand img {
-    width: 50px;
+    height: 40px;
+    width: auto;
+    display: inline-block;
 }

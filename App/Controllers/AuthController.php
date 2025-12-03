@@ -71,3 +71,4 @@ class AuthController extends BaseController
         return $this->html();
     }
 }
+

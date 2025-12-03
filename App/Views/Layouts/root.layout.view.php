@@ -19,31 +19,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?= $link->asset('css/styl.css') ?>">
+    <link rel="stylesheet" href="<?= $link->asset('css/styl.css') ?>?v=1.1">
     <script src="<?= $link->asset('js/script.js') ?>"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-light">
+<nav class="navbar navbar-expand-sm">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= $link->url('home.index') ?>">
-            <img src="<?= $link->asset('images/vaiicko_logo.png') ?>" title="<?= App\Configuration::APP_NAME ?>" alt="Framework Logo">
+            Bookly
         </a>
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a class="nav-link" href="<?= $link->url('home.contact') ?>">Contact</a>
+                <a class="nav-link" href="<?= $link->url('home.index') ?>">Hlavná stránka</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= $link->url('books.index') ?>">Knihy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= $link->url('home.contact') ?>">Kontakt</a>
             </li>
         </ul>
         <?php if ($user->isLoggedIn()) { ?>
-            <span class="navbar-text">Logged in user: <b><?= $user->getName() ?></b></span>
+            <span class="navbar-text">Prihlásený používateľ: <b><?= $user->getName() ?></b></span>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= $link->url('auth.logout') ?>">Log out</a>
+                    <a class="nav-link" href="<?= $link->url('auth.logout') ?>">Odhlásiť sa</a>
                 </li>
             </ul>
         <?php } else { ?>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= App\Configuration::LOGIN_URL ?>">Log in</a>
+                    <a class="nav-link" href="<?= App\Configuration::LOGIN_URL ?>">Prihlásiť sa</a>
                 </li>
             </ul>
         <?php } ?>

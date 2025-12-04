@@ -20,13 +20,13 @@ $view->setLayout('root');
                         <div class="form-label-group mb-3">
                             <label for="username" class="form-label">E-mail</label>
                             <input name="username" type="text" id="username" class="form-control" placeholder="E-mail"
-                                   required autofocus>
+                                    autofocus>
                         </div>
 
                         <div class="form-label-group mb-3">
                             <label for="password" class="form-label">Heslo</label>
                             <input name="password" type="password" id="password" class="form-control"
-                                   placeholder="Heslo" required>
+                                   placeholder="Heslo">
                         </div>
                         <div class="text-center">
                             <button class="btn btn-primary" type="submit" name="submit">Prihlásiť sa</button>
@@ -40,3 +40,4 @@ $view->setLayout('root');
         </div>
     </div>
 </div>
+<script src="<?= $link->asset('js/login.js') ?>"></script>

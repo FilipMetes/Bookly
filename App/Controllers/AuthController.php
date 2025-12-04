@@ -52,22 +52,28 @@ class AuthController extends BaseController
             $email = trim($request->value('username'));
             $password = $request->value('password');
 
-            // Use the User model (registered users) to authenticate
             try {
                 $user = User::findByEmail($email);
+
                 if ($user && $user->verifyPassword($password)) {
-                    // store identity in session so framework recognizes logged user
+                    // uložíme identity do session
                     $this->app->getSession()->set(Configuration::IDENTITY_SESSION_KEY, $user);
-                    return $this->redirect($this->url("admin.index"));
+                    if ($user->isAdmin()) {
+                        return $this->redirect($this->url("admin.index"));
+                    } else {
+                        return $this->redirect($this->url("home.index"));
+                    }
                 } else {
+                    // nesprávny email alebo heslo
                     $message = 'Neplatné prihlasovacie údaje.';
                 }
-            } catch (Exception) {
-                // log or return generic message
+            } catch (Exception $ex) {
+                // chyba pri prístupe k DB alebo iná výnimka
                 $message = 'Chyba pri prihlasovaní. Skúste neskôr.';
             }
         }
 
+        // vykreslíme login view s prípadnou správou
         return $this->html(compact('message'));
     }
 

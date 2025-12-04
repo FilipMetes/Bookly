@@ -74,3 +74,4 @@ $view->setLayout('root');
         </div>
     </div>
 </div>
+<script src="<?= $link->asset('js/register.js') ?>"></script>

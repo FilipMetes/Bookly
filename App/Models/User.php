@@ -157,6 +157,11 @@ class User extends Model implements IIdentity
         ]);
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->role === 'A';
+    }
+
     /**
      * Verify a raw password against the stored hashed password.
      * @param string $raw

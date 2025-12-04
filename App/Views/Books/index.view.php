@@ -1,11 +1,16 @@
 <?php
 
+use App\Configuration;
+use App\Models\User;
+
 /** @var \Framework\Support\LinkGenerator $link */
 /** @var \Framework\Support\View $view */
 
 $view->setLayout('root');
 ?>
 
+<?php $user = $this->app->getSession()->get(Configuration::IDENTITY_SESSION_KEY);;
+if ($user && $user->role === 'A'): ?>
 <div class="container books-catalog my-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="catalog-title">Katalóg kníh</h2>
@@ -82,5 +87,5 @@ $view->setLayout('root');
 
         <!-- Add more cards as needed -->
     </div>
-
+    <?php endif; ?>
 </div>

@@ -14,19 +14,23 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= $link->asset('favicons/favicon-16x16.png') ?>">
     <link rel="manifest" href="<?= $link->asset('favicons/site.webmanifest') ?>">
     <link rel="shortcut icon" href="<?= $link->asset('favicons/favicon.ico') ?>">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="<?= $link->asset('css/navbar.css') ?>?v=1.3">
     <link rel="stylesheet" href="<?= $link->asset('css/books.css') ?>?v=1.3">
+    <link rel="stylesheet" href="<?= $link->asset('css/home.css') ?>?v=1.3">
     <script src="<?= $link->asset('js/script.js') ?>"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= $link->url('home.index') ?>">Bookly</a>
+
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
                 <a class="nav-link" href="<?= $link->url('books.index') ?>">Knihy</a>
@@ -35,9 +39,15 @@
                 <a class="nav-link" href="<?= $link->url('home.contact') ?>">Kontakt</a>
             </li>
         </ul>
+
         <?php if ($user->isLoggedIn()) { ?>
-            <span class="navbar-text">Logged in user: <b><?= $user->getName() ?></b></span>
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto d-flex align-items-center">
+                <li class="nav-item me-3 d-flex align-items-center">
+                    <span class="navbar-text">Prihlásený: <b><?= htmlspecialchars($user->getName()) ?></b></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $link->url('profile.index') ?>">Profil</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= $link->url('auth.logout') ?>">Log out</a>
                 </li>
@@ -51,6 +61,7 @@
         <?php } ?>
     </div>
 </nav>
+
 <div class="container-fluid mt-3">
     <div class="web-content">
         <?= $contentHTML ?>

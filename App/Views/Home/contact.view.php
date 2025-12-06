@@ -3,22 +3,34 @@
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
 
-<div class="row">
-    <div class="col">
-        <h3>Faculty of Management Science and Informatics</h3>
-        <strong>Address</strong>: Univerzitná 8215/1, 010 26 Žilina, Slovakia<br>
-        <strong>Tel. number</strong>: +421/41 513 4121<br>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
 
-        <strong>GPS</strong>: 49°12'6,4"N 18°45'42,6"E
-    </div>
-</div>
-<div class="row mt-3">
-    <div class="col">
-        <iframe width="100%" height="300" src="https://www.openstreetmap.org/export/embed.html?bbox=18.747396469116214%2C49.193792384417996%2C18.776578903198246%2C49.210336337994846&amp;layer=mapnik&amp;marker=49.202065053033984%2C18.761987686157227"></iframe>
-    </div>
-</div>
-<div class="row mt-3">
-    <div class="col">
-        <a href="<?= $link->url("home.index") ?>">Back to main page</a>
+            <div class="card shadow-sm rounded">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">BookShelf Library</h4>
+                </div>
+                <div class="card-body">
+
+                    <p><strong>Address:</strong> Oravská Polhora, Slovakia</p>
+                    <p><strong>Tel. number:</strong> +421/915 123 456</p>
+                    <p><strong>GPS:</strong> 49°27'30"N 19°34'00"E</p>
+
+                    <div class="mt-3">
+                        <iframe width="100%" height="300"
+                                src="https://www.openstreetmap.org/export/embed.html?bbox=19.565%2C49.45%2C19.58%2C49.465&amp;layer=mapnik&amp;marker=49.4583%2C19.5667"
+                                style="border:0;">
+                        </iframe>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="<?= $link->url("home.index") ?>" class="btn btn-dark">Back to main page</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>

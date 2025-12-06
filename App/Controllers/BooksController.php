@@ -18,9 +18,10 @@ class BooksController extends BaseController
     public function index(Request $request): Response
     {
         try {
-            return $this->html([
-                'books' => Book::getAll()
-            ]);
+            $books = Book::getAll();
+            $user = $this->app->getSession()->get(Configuration::IDENTITY_SESSION_KEY);
+
+            return $this->html(compact('books', 'user'));
         } catch (Exception $e) {
             throw new HttpException(500, "DB Chyba: " . $e->getMessage());
         }
@@ -48,6 +49,22 @@ class BooksController extends BaseController
         }
 
         return $this->html(compact('book'));
+    }
+
+    public function detail(Request $request): Response
+    {
+        $id = (int)$request->value('id'); // získa parameter id z URL alebo GET/POST
+        if (!$id) {
+            return $this->redirect('books.index');
+        }
+
+        $book = Book::getOne($id);
+        if (!$book) {
+            return $this->redirect('books.index'); // alebo 404
+        }
+
+        // Tu sa zobrazí samostatná stránka detail knihy
+        return $this->html(['book' => $book]);
     }
 
     /**

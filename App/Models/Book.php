@@ -72,5 +72,6 @@ class Book extends Model
 
     public function setCoverPath(?string $v): void { $this->cover_path = $v; }
 
+
 }
 

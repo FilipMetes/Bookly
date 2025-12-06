@@ -5,6 +5,8 @@ use App\Configuration;
 /** @var \Framework\Support\LinkGenerator $link */
 /** @var \App\Models\Book[] $books */
 
+$user = $this->app->getSession()->get(Configuration::IDENTITY_SESSION_KEY);
+
 ?>
 
 <div class="container books-catalog my-4">
@@ -16,6 +18,7 @@ use App\Configuration;
                 <div class="card-body">
                     <h5 class="filter-title">Filter</h5>
 
+                    <!-- Žáner filter -->
                     <div class="filter-section">
                         <h6 class="filter-heading">Žáner</h6>
                         <?php
@@ -29,6 +32,7 @@ use App\Configuration;
                         <?php endforeach; ?>
                     </div>
 
+                    <!-- Autor filter -->
                     <div class="filter-section mt-3">
                         <h6 class="filter-heading">Autor</h6>
                         <?php
@@ -42,6 +46,7 @@ use App\Configuration;
                         <?php endforeach; ?>
                     </div>
 
+                    <!-- Formát filter -->
                     <div class="filter-section mt-3 format-section">
                         <h6 class="filter-heading">Formát</h6>
                         <div class="form-check">
@@ -54,6 +59,7 @@ use App\Configuration;
                         </div>
                     </div>
 
+                    <!-- Cena filter -->
                     <div class="filter-section mt-3 price-section">
                         <h6 class="filter-heading">Cena (€)</h6>
                         <div class="price-slider">
@@ -84,7 +90,9 @@ use App\Configuration;
                     <input id="bookSearch" class="form-control" type="search" placeholder="Vyhľadať knihu alebo autora...">
                 </div>
 
-                <a href="<?= $link->url('books.add') ?>" class="btn btn-success ms-3">Pridať knihu</a>
+                <?php if ($user?->isAdmin()): ?>
+                    <a href="<?= $link->url('books.add') ?>" class="btn btn-success ms-3">Pridať knihu</a>
+                <?php endif; ?>
             </div>
 
             <div class="row g-3 books-grid">
@@ -95,7 +103,6 @@ use App\Configuration;
                     <?php foreach ($books as $book): ?>
                         <div class="col-6 col-md-4 col-lg-3">
                             <div class="card book-card h-100">
-                                <!-- nový <img> tag -->
                                 <img src="<?= $book->getCoverPath() ?>"
                                      alt="<?= htmlspecialchars($book->getTitle()) ?>"
                                      class="book-cover-img">
@@ -107,20 +114,27 @@ use App\Configuration;
                                         <?= $book->getGenre() ? 'Žáner: ' . htmlspecialchars($book->getGenre()) : '' ?>
                                     </p>
 
-                                    <div class="mt-auto d-flex justify-content-between align-items-center">
+                                    <div class="mt-auto">
                                         <?php if ($book->getPrice()): ?>
-                                            <strong class="book-price">€<?= htmlspecialchars($book->getPrice()) ?></strong>
+                                            <strong class="book-price d-block mb-2">€<?= htmlspecialchars($book->getPrice()) ?></strong>
                                         <?php endif; ?>
 
-                                        <div class="d-flex gap-1">
-                                            <a class="btn btn-outline-primary btn-sm"
-                                               href="<?= $link->url('books.edit', ['id' => $book->getId()]) ?>">
-                                                Upraviť
+                                        <div class="d-flex flex-wrap gap-1">
+                                            <a class="btn btn-outline-secondary btn-sm"
+                                               href="<?= $link->url('books.detail', ['id' => $book->getId()]) ?>">
+                                                Detail
                                             </a>
-                                            <a class="btn btn-outline-danger btn-sm"
-                                               href="<?= $link->url('books.delete', ['id' => $book->getId()]) ?>">
-                                                Zmazať
-                                            </a>
+
+                                            <?php if ($user?->isAdmin()): ?>
+                                                <a class="btn btn-outline-primary btn-sm"
+                                                   href="<?= $link->url('books.edit', ['id' => $book->getId()]) ?>">
+                                                    Upraviť
+                                                </a>
+                                                <a class="btn btn-outline-danger btn-sm"
+                                                   href="<?= $link->url('books.delete', ['id' => $book->getId()]) ?>">
+                                                    Zmazať
+                                                </a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>

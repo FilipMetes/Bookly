@@ -1,39 +1,53 @@
 <?php
-
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col mt-5">
-            <div class="text-center">
-                <h2>Vaííčko MVC FW</h2>
-                <h3>Version <?= App\Configuration::FW_VERSION ?></h3>
-                <img src="<?= $link->asset('images/vaiicko_logo.png') ?>" alt="Framework Logo">
-                <p>
-                    Congratulations, you have successfully installed and run the framework
-                    <strong>Vaííčko</strong> <?= App\Configuration::FW_VERSION ?>!<br>
-                    We hope that you will create a great application using this framework.<br>
-                </p>
-                <p>
-                    This simple framework was created for teaching purposes and to better understand how the MVC
-                    architecture works.<br>
-                    It is intended for students of the subject <em>web application development</em>, but not only
-                    for them.
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-3">
+<div class="container home-page my-5">
+
+    <!-- Hero / welcome banner -->
+    <div class="row mb-5">
         <div class="col text-center">
-            <h4>Authors</h4>
-            <div>
-                <a href="mailto:Patrik.Hrkut@fri.uniza.sk">doc. Ing. Patrik Hrkút, PhD.</a><br>
-                <a href="mailto:Michal.Duracik@fri.uniza.sk">Ing. Michal Ďuračík, PhD.</a><br>
-                <a href="mailto:Matej.Mesko@fri.uniza.sk">Ing. Matej Meško, PhD.</a><br><br>
-                &copy; 2020-<?= date('Y') ?> University of Žilina, Faculty of Management Science and Informatics,
-                Department of Software Technologies
+            <h1 class="display-4">Vitajte v BookShelf</h1>
+            <p class="lead">
+                Objavujte, čítajte a spravujte svoje obľúbené knihy na jednom mieste.
+            </p>
+        </div>
+    </div>
+
+    <!-- Featured categories or recommendations -->
+    <div class="row mb-5 text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card feature-card h-100 p-3">
+                <img src="<?= $link->asset('images/genres.png') ?>" alt="Žánre" class="feature-img mb-3">
+                <h5>Žánre</h5>
+                <p>Prehľadajte knihy podľa žánrov a nájdite nové obľúbené tituly.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card feature-card h-100 p-3">
+                <img src="<?= $link->asset('images/authors.png') ?>" alt="Autori" class="feature-img mb-3">
+                <h5>Autori</h5>
+                <p>Objavte knihy od vašich obľúbených autorov a spoznajte nových spisovateľov.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card feature-card h-100 p-3">
+                <img src="<?= $link->asset('images/recommend.png') ?>" alt="Odporúčané" class="feature-img mb-3">
+                <h5>Odporúčané</h5>
+                <p>Inšpirujte sa odporúčaniami a objavte bestsellery a skryté perly.</p>
             </div>
         </div>
     </div>
+
+    <!-- About section -->
+    <div class="row mb-5">
+        <div class="col text-center">
+            <h2>O BookShelf</h2>
+            <p class="mt-3">
+                BookShelf je moderná knižnica, ktorá vám umožní prehľadne spravovať vašu zbierku kníh,
+                vyhľadávať nové tituly a objavovať obľúbené žánre a autorov. Vytvorená pre čitateľov a nadšencov kníh.
+            </p>
+        </div>
+    </div>
+
 </div>

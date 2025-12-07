@@ -77,23 +77,49 @@ class ProfileController extends BaseController
     {
         $errors = [];
 
-        if (!$request->value('name')) $errors[] = "Meno je povinné.";
-        if (!$request->value('surname')) $errors[] = "Priezvisko je povinné.";
+        $sessionUser = $this->app->getSession()->get(Configuration::IDENTITY_SESSION_KEY);
+        $currentUserId = $sessionUser ? $sessionUser->getId() : null;
 
+        $name = trim((string)$request->value('name'));
+        $surname = trim((string)$request->value('surname'));
+        $email = trim((string)$request->value('e_mail'));
+
+        if ($name === '') {
+            $errors[] = "Meno je povinné.";
+        }
+        if ($surname === '') {
+            $errors[] = "Priezvisko je povinné.";
+        }
+
+        // Email - najprv formát
+        if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Zadaný e-mail nie je platný.";
+        } else {
+            // Kontrola unikátnosti: ignoruj aktuálneho používateľa (id <> ?)
+            if ($currentUserId !== null) {
+                $count = User::getCount('e_mail = ? AND id <> ?', [$email, $currentUserId]);
+            } else {
+                $count = User::getCount('e_mail = ?', [$email]);
+            }
+
+            if ($count > 0) {
+                $errors[] = 'Používateľ s týmto emailom už existuje.';
+            }
+        }
+
+        // PSČ (voliteľné)
         if ($PSC = $request->value('PSC')) {
             if (!preg_match('/^\d{5}$/', $PSC)) {
                 $errors[] = "PSČ musí byť presne 5 číslic.";
             }
         }
 
-        if (!filter_var($request->value('e_mail'), FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "Zadaný e-mail nie je platný.";
-        }
-
+        // Heslo (iba ak je zadané)
         if ($pass = $request->value('password')) {
             if (strlen($pass) < 6) $errors[] = "Heslo musí mať aspoň 6 znakov.";
         }
 
         return $errors;
     }
+
 }

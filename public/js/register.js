@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 input.classList.add('is-invalid');
                 hasError = true;
             } else {
-                // kontrola špecifického formátu len ak pole nie je prázdne
                 if (f.id === 'e_mail') {
                     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                     if (!emailRegex.test(value)) {

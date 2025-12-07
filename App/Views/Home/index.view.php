@@ -4,7 +4,6 @@
 
 <div class="container home-page my-5">
 
-    <!-- Hero / welcome banner -->
     <div class="row mb-5">
         <div class="col text-center">
             <h1 class="display-4">Vitajte v BookShelf</h1>

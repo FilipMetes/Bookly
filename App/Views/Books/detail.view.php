@@ -10,7 +10,6 @@
         </div>
     </div>
 
-    <!-- Rámik okolo celého detailu -->
     <div class="book-detail-frame p-4">
         <div class="row g-4">
             <!-- Obrázok knihy mimo karty -->

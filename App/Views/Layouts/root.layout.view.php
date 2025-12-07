@@ -28,19 +28,16 @@
 </head>
 <body>
 
-<!-- ======= RESPONZÍVNY NAVBAR (všetky funkcie zachované) ======= -->
 <nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= $link->url('home.index') ?>">BookShelf</a>
 
-        <!-- Tento toggler je jediná pridaná vec -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarContent" aria-controls="navbarContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Celý tvoj pôvodný obsah navbaru je tu, len obalený do collapse -->
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
@@ -73,7 +70,6 @@
         </div>
     </div>
 </nav>
-<!-- ============================================================= -->
 
 <div class="container-fluid mt-3">
     <div class="web-content">

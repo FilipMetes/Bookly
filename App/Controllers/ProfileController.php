@@ -24,7 +24,6 @@ class ProfileController extends BaseController
             throw new HttpException(401, "Musíš byť prihlásený.");
         }
 
-        // 🔥 Toto je dôležité – načítame reálny model z DB
         $user = User::getOne($sessionUser->getId());
 
         if (!$user) {

@@ -27,40 +27,53 @@
     <script src="<?= $link->asset('js/script.js') ?>"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+
+<!-- ======= RESPONZÍVNY NAVBAR (všetky funkcie zachované) ======= -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= $link->url('home.index') ?>">BookShelf</a>
 
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="<?= $link->url('books.index') ?>">Knihy</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= $link->url('home.contact') ?>">Kontakt</a>
-            </li>
-        </ul>
+        <!-- Tento toggler je jediná pridaná vec -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarContent" aria-controls="navbarContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-        <?php if ($user->isLoggedIn()) { ?>
-            <ul class="navbar-nav ms-auto d-flex align-items-center">
-                <li class="nav-item me-3 d-flex align-items-center">
-                    <span class="navbar-text">Prihlásený: <b><?= htmlspecialchars($user->getName()) ?></b></span>
+        <!-- Celý tvoj pôvodný obsah navbaru je tu, len obalený do collapse -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= $link->url('books.index') ?>">Knihy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= $link->url('profile.index') ?>">Profil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= $link->url('auth.logout') ?>">Log out</a>
+                    <a class="nav-link" href="<?= $link->url('home.contact') ?>">Kontakt</a>
                 </li>
             </ul>
-        <?php } else { ?>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= App\Configuration::LOGIN_URL ?>">Log in</a>
-                </li>
-            </ul>
-        <?php } ?>
+
+            <?php if ($user->isLoggedIn()) { ?>
+                <ul class="navbar-nav ms-auto d-flex align-items-center">
+                    <li class="nav-item me-3 d-flex align-items-center">
+                        <span class="navbar-text">Prihlásený: <b><?= htmlspecialchars($user->getName()) ?></b></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $link->url('profile.index') ?>">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $link->url('auth.logout') ?>">Log out</a>
+                    </li>
+                </ul>
+            <?php } else { ?>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= App\Configuration::LOGIN_URL ?>">Log in</a>
+                    </li>
+                </ul>
+            <?php } ?>
+        </div>
     </div>
 </nav>
+<!-- ============================================================= -->
 
 <div class="container-fluid mt-3">
     <div class="web-content">

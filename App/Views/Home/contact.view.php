@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="mt-4 text-center">
-                        <a href="<?= $link->url("home.index") ?>" class="btn btn-dark">Back to main page</a>
+                        <a href="<?= $link->url("home.index") ?>" class="btn btn-dark">Späť na domovskú stránku</a>
                     </div>
 
                 </div>
